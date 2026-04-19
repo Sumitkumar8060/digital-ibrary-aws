@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="library-page">
+
+<!-- ===== TOP BAR ===== -->
+<div class="top-bar">
+    <div class="top-bar-content">
+        <span>📢 New books added weekly! Check the latest collection.</span>
+        <div class="top-bar-right">
+            <span>📧 support@library.com</span>
+            <span>|</span>
+            <span>☎️ +1-800-LIBRARY</span>
+        </div>
+    </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+    <div class="header-content">
+
+        <div class="header-left">
+            <span class="header-logo">📚</span>
+            <div>
+                <h1>Digital Library</h1>
+                <p>Your gateway to knowledge</p>
+            </div>
+        </div>
+
+        <!-- HEADER SEARCH -->
+        <div class="header-search">
+            <div class="header-search-wrap">
+                <span>🔍</span>
+                <input
+                    type="text"
+                    id="headerSearch"
+                    placeholder="Search books, authors..."
+                    onkeyup="searchBooks()"
+                >
+            </div>
+        </div>
+
+        <div class="header-right">
+            <div class="user-info">
+                <span class="user-avatar">👤</span>
+                <div class="user-details">
+                    <span class="user-name">Welcome, User!</span>
+                    <span class="user-role">Member</span>
+                </div>
+            </div>
+            <a href="index.html" class="logout-btn">🚪 Logout</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+    <div class="navbar-content">
+
+        <!-- LEFT LINKS -->
+        <div class="nav-links">
+            <a href="#home"    class="nav-link nav-active">🏠 Home</a>
+            <a href="#books"   class="nav-link">📖 Books</a>
+            <a href="#videos"  class="nav-link">🎬 Videos</a>
+
+            <!-- CATEGORIES DROPDOWN -->
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link dropdown-toggle">
+                    🏷️ Categories ▾
+                </a>
+                <div class="dropdown-menu">
+                    <a href="#" onclick="filterBooks('Technology',null)">
+                        💻 Technology
+                    </a>
+                    <a href="#" onclick="filterBooks('Science',null)">
+                        🔬 Science
+                    </a>
+                    <a href="#" onclick="filterBooks('Mathematics',null)">
+                        🔢 Mathematics
+                    </a>
+                    <a href="#" onclick="filterBooks('Business',null)">
+                        💼 Business
+                    </a>
+                    <a href="#" onclick="filterBooks('History',null)">
+                        🏛️ History
+                    </a>
+                    <a href="#" onclick="filterBooks('Literature',null)">
+                        📜 Literature
+                    </a>
+                    <a href="#" onclick="filterBooks('Medical',null)">
+                        🏥 Medical
+                    </a>
+                    <a href="#" onclick="filterBooks('Engineering',null)">
+                        ⚙️ Engineering
+                    </a>
+                    <a href="#" onclick="filterBooks('Arts',null)">
+                        🎨 Arts & Design
+                    </a>
+                    <a href="#" onclick="filterBooks('Psychology',null)">
+                        🧠 Psychology
+                    </a>
+                </div>
+            </div>
+
+            <!-- MORE DROPDOWN -->
+            <div class="nav-dropdown">
+                <a href="#" class="nav-link dropdown-toggle">
+                    ☰ More ▾
+                </a>
+                <div class="dropdown-menu">
+                    <a href="#about">ℹ️ About Us</a>
+                    <a href="#contact">📬 Contact</a>
+                    <a href="#faq">❓ FAQ</a>
+                    <a href="dashboard.php">⚙️ Dashboard</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT NAV ITEMS -->
+        <div class="nav-right">
+            <a href="#" class="nav-icon-btn" title="Bookmarks">
+                🔖 <span class="nav-badge">3</span>
+            </a>
+            <a href="#" class="nav-icon-btn" title="Notifications">
+                🔔 <span class="nav-badge">5</span>
+            </a>
+            <a href="#" class="nav-icon-btn" title="My Downloads">
+                ⬇️
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+<!-- ===== HERO SECTION ===== -->
+<div class="hero-section" id="home">
+    <div class="hero-content">
+        <div class="hero-badge">🌟 AWS Powered Digital Library</div>
+        <h2>Explore. Learn. Grow.</h2>
+        <p>
+            Access 100+ books and 50+ video lectures across
+            10+ categories. All stored securely on AWS Cloud.
+        </p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-number">100+</span>
+                <span class="hero-stat-label">📚 Books</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">50+</span>
+                <span class="hero-stat-label">🎬 Videos</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">10+</span>
+                <span class="hero-stat-label">🏷️ Categories</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-number">500+</span>
+                <span class="hero-stat-label">👥 Users</span>
+            </div>
+        </div>
+        <div class="hero-buttons">
+            <a href="#books"  class="hero-btn hero-btn-primary">
+                📖 Browse Books
+            </a>
+            <a href="#videos" class="hero-btn hero-btn-secondary">
+                🎬 Watch Videos
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- ===== CATEGORY SHOWCASE ===== -->
+<div class="category-showcase">
+    <div class="cat-showcase-inner">
+        <h2 class="section-title">🏷️ Browse by Category</h2>
+        <div class="section-divider"></div>
+
+        <div class="category-grid">
+
+            <div class="cat-card" onclick="filterBooks('Technology',null); scrollToBooks()">
+                <span class="cat-icon">💻</span>
+                <h4>Technology</h4>
+                <p>15 Books</p>
+            </div>
+
+            <div class="cat-card" onclick="filterBooks('Science',null); scrollToBooks()">
+                <span class="cat-icon">🔬</span>
+                <h4>Science</h4>
+                <p>12 Books</p>
+            </div>
+
+            <div class="cat-card" onclick="filterBooks('Mathematics',null); scrollToBooks()">
+                <span class="cat-icon">🔢</span>
+                <h4>Mathematics</h4>
+                <p>10 Books</p>
+            </div>
+
+            <div class="cat-card" onclick="filterBooks('Business',null); scrollToBooks()">
+                <span class="cat-icon">💼</span>
+                <h4>Business</h4>
+                <p>18 Books</p>
+            </div>
+
+            <div class="cat-card" onclick="filterBooks('History',null); scrollToBooks()">
+                <span class="cat-icon">🏛️</span>
+                <h4>History</h4>
+                <p>8 Books</p>
+            </div>
+
+            <div class="cat-card" onclick="filterBooks('Literature',null); scrollToBooks()">
+                <span class="cat-icon">📜</span>
+                <h4>Literature</h4>
+                <p>14 Books</p>
+            </div>
+
+            <div class="cat-card" onclick="filterBooks('Medical',null); scrollToBooks()">
+                <span class="cat-icon">🏥</span>
+                <h4>Medical</h4>
+                <p>9 Books</p>
+            </div>
+
+            <div class="cat-card" onclick="filterBooks('Engineering',null); scrollToBooks()">
+                <span class="cat-icon">⚙️</span>
+                <h4>Engineering</h4>
+                <p>11 Books</p>
+            </div>
+
+            <div class="cat-card" onclick="filterBooks('Arts',null); scrollToBooks()">
+                <span class="cat-icon">🎨</span>
+                <h4>Arts & Design</h4>
+                <p>7 Books</p>
+            </div>
+
+            <div class="cat-card" onclick="filterBooks('Psychology',null); scrollToBooks()">
+                <span class="cat-icon">🧠</span>
+                <h4>Psychology</h4>
+                <p>6 Books</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ===== BOOKS SECTION ===== -->
+<div class="container" id="books">
+
+    <h2 class="section-title">📖 Book Collection</h2>
+    <p class="section-subtitle">
+        Showing all books · Click download to get your copy instantly
+    </p>
+    <div class="section-divider"></div>
+
+    <!-- SEARCH + FILTER BAR -->
+    <div class="filter-bar">
+
+        <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input
+                type="text"
+                id="searchInput"
+                class="search-input"
+                placeholder="Search books, authors..."
+                onkeyup="searchBooks()"
+            >
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active"
+                    onclick="filterBooks('all', this)">All</button>
+            <button class="filter-btn"
+                    onclick="filterBooks('Technology', this)">💻 Tech</button>
+            <button class="filter-btn"
+                    onclick="filterBooks('Science', this)">🔬 Science</button>
+            <button class="filter-btn"
+                    onclick="filterBooks('Mathematics', this)">🔢 Math</button>
+            <button class="filter-btn"
+                    onclick="filterBooks('Business', this)">💼 Business</button>
+            <button class="filter-btn"
+                    onclick="filterBooks('History', this)">🏛️ History</button>
+            <button class="filter-btn"
+                    onclick="filterBooks('Literature', this)">📜 Literature</button>
+            <button class="filter-btn"
+                    onclick="filterBooks('Medical', this)">🏥 Medical</button>
+            <button class="filter-btn"
+                    onclick="filterBooks('Engineering', this)">⚙️ Engineering</button>
+            <button class="filter-btn"
+                    onclick="filterBooks('Arts', this)">🎨 Arts</button>
+            <button class="filter-btn"
+                    onclick="filterBooks('Psychology', this)">🧠 Psychology</button>
+        </div>
+
+        <!-- SORT -->
+        <div class="sort-wrapper">
+            <select id="sortBooks" onchange="sortBooksBy()" class="sort-select">
+                <option value="default">Sort By</option>
+                <option value="title">📖 Title A-Z</option>
+                <option value="downloads">⬇️ Most Downloaded</option>
+                <option value="newest">🆕 Newest</option>
+            </select>
+        </div>
+
+    </div>
+
+    <!-- RESULTS COUNT -->
+    <div class="results-count">
+        Showing <span id="results-count">12</span> books
+    </div>
+
+    <!-- BOOKS GRID -->
+    <div class="books-grid" id="booksGrid">
+
+        <!-- BOOK 1 — Technology -->
+        <div class="card" data-category="Technology"
+             data-title="Python Programming"
+             data-downloads="245" data-date="2024-01-01">
+            <span class="card-badge badge-hot">🔥 HOT</span>
+            <div class="card-img-wrapper">
+                <img src="https://www.shutterstock.com/image-photo/book-open-pages-close-up-600nw-2562942291.jpg"
+                     alt="Python Programming"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">💻 Technology</span>
+                <h3>Python Programming</h3>
+                <p class="card-author">✍️ John Smith</p>
+                <p class="card-desc">Master Python from basics to advanced. Covers OOP, APIs and automation.</p>
+                <div class="card-meta">
+                    <span>📦 10 copies</span>
+                    <span>⬇️ 245 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐⭐ (4.9)</div>
+            </div>
+            <a href="S3_BOOK1_LINK" class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 2 — Technology -->
+        <div class="card" data-category="Technology"
+             data-title="Cloud Computing AWS"
+             data-downloads="189" data-date="2024-02-01">
+            <span class="card-badge badge-new">NEW</span>
+            <div class="card-img-wrapper">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDp3cCfw7WNcym3uuyKIfD69GX861u5BfgOw&s"
+                     alt="AWS Cloud Computing"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">💻 Technology</span>
+                <h3>Cloud Computing AWS</h3>
+                <p class="card-author">✍️ Sarah Johnson</p>
+                <p class="card-desc">Complete guide to AWS services — EC2, S3, RDS, Lambda and more.</p>
+                <div class="card-meta">
+                    <span>📦 8 copies</span>
+                    <span>⬇️ 189 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐⭐ (4.8)</div>
+            </div>
+            <a href="S3_BOOK2_LINK" class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 3 — Science -->
+        <div class="card" data-category="Science"
+             data-title="Physics Fundamentals"
+             data-downloads="134" data-date="2024-01-15">
+            <span class="card-badge badge-free">FREE</span>
+            <div class="card-img-wrapper">
+                <img src="https://www.popsci.com/wp-content/uploads/2024/07/buy_physical_books.jpg"
+                     alt="Physics Fundamentals"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">🔬 Science</span>
+                <h3>Physics Fundamentals</h3>
+                <p class="card-author">✍️ Dr. Alan Ray</p>
+                <p class="card-desc">Comprehensive physics covering mechanics, thermodynamics and waves.</p>
+                <div class="card-meta">
+                    <span>📦 15 copies</span>
+                    <span>⬇️ 134 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐ (4.5)</div>
+            </div>
+            <a href="S3_BOOK3_LINK" download class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 4 — Mathematics -->
+        <div class="card" data-category="Mathematics"
+             data-title="Calculus Made Easy"
+             data-downloads="210" data-date="2024-03-01">
+            <span class="card-badge badge-hot">🔥 HOT</span>
+            <div class="card-img-wrapper">
+                <img src="https://www.shutterstock.com/image-photo/book-open-pages-close-up-600nw-2562942291.jpg"
+                     alt="Calculus Made Easy"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">🔢 Mathematics</span>
+                <h3>Calculus Made Easy</h3>
+                <p class="card-author">✍️ Prof. Mike Brown</p>
+                <p class="card-desc">Step-by-step calculus guide for students. Covers limits, derivatives and integrals.</p>
+                <div class="card-meta">
+                    <span>📦 12 copies</span>
+                    <span>⬇️ 210 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐⭐ (4.7)</div>
+            </div>
+            <a href="S3_BOOK4_LINK" download class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 5 — Business -->
+        <div class="card" data-category="Business"
+             data-title="Startup Secrets"
+             data-downloads="320" data-date="2024-02-20">
+            <span class="card-badge badge-hot">🔥 HOT</span>
+            <div class="card-img-wrapper">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDp3cCfw7WNcym3uuyKIfD69GX861u5BfgOw&s"
+                     alt="Startup Secrets"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">💼 Business</span>
+                <h3>Startup Secrets</h3>
+                <p class="card-author">✍️ Emma Davis</p>
+                <p class="card-desc">From idea to IPO. Learn how successful startups were built from scratch.</p>
+                <div class="card-meta">
+                    <span>📦 20 copies</span>
+                    <span>⬇️ 320 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐⭐ (5.0)</div>
+            </div>
+            <a href="S3_BOOK5_LINK" download class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 6 — History -->
+        <div class="card" data-category="History"
+             data-title="World History Complete"
+             data-downloads="98" data-date="2024-01-10">
+            <span class="card-badge badge-free">FREE</span>
+            <div class="card-img-wrapper">
+                <img src="https://www.popsci.com/wp-content/uploads/2024/07/buy_physical_books.jpg"
+                     alt="World History"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">🏛️ History</span>
+                <h3>World History Complete</h3>
+                <p class="card-author">✍️ Prof. Linda Clark</p>
+                <p class="card-desc">Journey through ancient civilizations to modern times in one complete guide.</p>
+                <div class="card-meta">
+                    <span>📦 6 copies</span>
+                    <span>⬇️ 98 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐ (4.3)</div>
+            </div>
+            <a href="S3_BOOK6_LINK" download class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 7 — Literature -->
+        <div class="card" data-category="Literature"
+             data-title="Classic Literature Guide"
+             data-downloads="145" data-date="2024-03-15">
+            <span class="card-badge badge-new">NEW</span>
+            <div class="card-img-wrapper">
+                <img src="https://www.shutterstock.com/image-photo/book-open-pages-close-up-600nw-2562942291.jpg"
+                     alt="Classic Literature"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">📜 Literature</span>
+                <h3>Classic Literature Guide</h3>
+                <p class="card-author">✍️ Robert Wilson</p>
+                <p class="card-desc">Analysis and summaries of world's greatest literary masterpieces.</p>
+                <div class="card-meta">
+                    <span>📦 9 copies</span>
+                    <span>⬇️ 145 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐ (4.4)</div>
+            </div>
+            <a href="S3_BOOK7_LINK" download class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 8 — Medical -->
+        <div class="card" data-category="Medical"
+             data-title="Human Anatomy Atlas"
+             data-downloads="267" data-date="2024-02-05">
+            <span class="card-badge badge-hot">🔥 HOT</span>
+            <div class="card-img-wrapper">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDp3cCfw7WNcym3uuyKIfD69GX861u5BfgOw&s"
+                     alt="Human Anatomy"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">🏥 Medical</span>
+                <h3>Human Anatomy Atlas</h3>
+                <p class="card-author">✍️ Dr. Susan Lee</p>
+                <p class="card-desc">Detailed illustrated guide to human anatomy for medical students and professionals.</p>
+                <div class="card-meta">
+                    <span>📦 5 copies</span>
+                    <span>⬇️ 267 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐⭐ (4.9)</div>
+            </div>
+            <a href="S3_BOOK8_LINK" download class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 9 — Engineering -->
+        <div class="card" data-category="Engineering"
+             data-title="Civil Engineering Basics"
+             data-downloads="156" data-date="2024-01-25">
+            <span class="card-badge badge-free">FREE</span>
+            <div class="card-img-wrapper">
+                <img src="https://www.popsci.com/wp-content/uploads/2024/07/buy_physical_books.jpg"
+                     alt="Civil Engineering"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">⚙️ Engineering</span>
+                <h3>Civil Engineering Basics</h3>
+                <p class="card-author">✍️ Mark Taylor</p>
+                <p class="card-desc">Foundation of civil engineering — structures, materials and construction methods.</p>
+                <div class="card-meta">
+                    <span>📦 7 copies</span>
+                    <span>⬇️ 156 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐ (4.6)</div>
+            </div>
+            <a href="S3_BOOK9_LINK" download class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 10 — Arts -->
+        <div class="card" data-category="Arts"
+             data-title="Graphic Design Mastery"
+             data-downloads="178" data-date="2024-03-10">
+            <span class="card-badge badge-new">NEW</span>
+            <div class="card-img-wrapper">
+                <img src="https://www.shutterstock.com/image-photo/book-open-pages-close-up-600nw-2562942291.jpg"
+                     alt="Graphic Design"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">🎨 Arts & Design</span>
+                <h3>Graphic Design Mastery</h3>
+                <p class="card-author">✍️ Anna White</p>
+                <p class="card-desc">Learn professional graphic design using Adobe tools and design principles.</p>
+                <div class="card-meta">
+                    <span>📦 11 copies</span>
+                    <span>⬇️ 178 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐⭐ (4.8)</div>
+            </div>
+            <a href="S3_BOOK10_LINK" download class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 11 — Psychology -->
+        <div class="card" data-category="Psychology"
+             data-title="Mind Over Matter"
+             data-downloads="290" data-date="2024-02-28">
+            <span class="card-badge badge-hot">🔥 HOT</span>
+            <div class="card-img-wrapper">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDp3cCfw7WNcym3uuyKIfD69GX861u5BfgOw&s"
+                     alt="Mind Over Matter"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">🧠 Psychology</span>
+                <h3>Mind Over Matter</h3>
+                <p class="card-author">✍️ Dr. James Fox</p>
+                <p class="card-desc">Explore human psychology, behavior patterns and mental health strategies.</p>
+                <div class="card-meta">
+                    <span>📦 13 copies</span>
+                    <span>⬇️ 290 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐⭐ (4.9)</div>
+            </div>
+            <a href="S3_BOOK11_LINK" download class="card-download-btn">⬇️ Download</a>
+        </div>
+
+        <!-- BOOK 12 — Technology -->
+        <div class="card" data-category="Technology"
+             data-title="Machine Learning Basics"
+             data-downloads="312" data-date="2024-03-20">
+            <span class="card-badge badge-new">NEW</span>
+            <div class="card-img-wrapper">
+                <img src="https://www.popsci.com/wp-content/uploads/2024/07/buy_physical_books.jpg"
+                     alt="Machine Learning"
+                     onerror="this.src='https://via.placeholder.com/300x200?text=Book'">
+                <div class="card-img-overlay"><span>👁 Preview</span></div>
+            </div>
+            <div class="card-body">
+                <span class="card-category">💻 Technology</span>
+                <h3>Machine Learning Basics</h3>
+                <p class="card-author">✍️ Dr. Kevin Patel</p>
+                <p class="card-desc">Introduction to ML — supervised learning, neural networks and data science.</p>
+                <div class="card-meta">
+                    <span>📦 9 copies</span>
+                    <span>⬇️ 312 downloads</span>
+                </div>
+                <div class="card-rating">⭐⭐⭐⭐⭐ (5.0)</div>
+            </div>
+            <a href="S3_BOOK12_LINK" download class="card-download-btn">⬇️ Download</a>
+        </div>
+
+    </div>
+
+    <!-- NO RESULTS -->
+    <div id="no-results" class="no-results" style="display:none;">
+        😔 No books found. Try a different search or category.
+    </div>
+
+    <!-- LOAD MORE -->
+    <div style="text-align:center; margin-top:30px;">
+        <button class="load-more-btn" onclick="loadMore()">
+            ➕ Load More Books
+        </button>
+    </div>
+
+</div>
+
+<!-- ===== VIDEO SECTION ===== -->
+<div class="video-section" id="videos">
+
+    <h2 class="section-title">🎬 Video Lectures</h2>
+    <p class="section-subtitle">
+        Click a thumbnail to start watching · 6 lectures available
+    </p>
+    <div class="section-divider"></div>
+
+    <!-- VIDEO FILTER -->
+    <div class="video-filter">
+        <button class="filter-btn active"
+                onclick="filterVideos('all', this)">All</button>
+        <button class="filter-btn"
+                onclick="filterVideos('Beginner', this)">🟢 Beginner</button>
+        <button class="filter-btn"
+                onclick="filterVideos('Intermediate', this)">🟡 Intermediate</button>
+        <button class="filter-btn"
+                onclick="filterVideos('Advanced', this)">🔴 Advanced</button>
+    </div>
+
+    <!-- VIDEO THUMBNAILS GRID -->
+    <div class="video-grid" id="videoGrid">
+
+        <!-- VIDEO 1 -->
+        <div id="thumb1" class="video-thumb-card"
+             data-level="Beginner" onclick="playVideo(1)">
+            <div class="video-thumb-wrapper">
+                <img src="VIDEO_THUMBNAIL1_LINK" alt="Python Basics"
+                     class="video-thumbnail"
+                     onerror="this.src='https://via.placeholder.com/300x170?text=Video+1'">
+                <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                </div>
+                <span class="video-badge level-beginner">Beginner</span>
+            </div>
+            <div class="video-thumb-info">
+                <h4>Python Basics for Beginners</h4>
+                <div class="video-meta">
+                    <span class="video-duration">⏱ 45 min</span>
+                    <span class="video-views">👁 1.2K views</span>
+                </div>
+                <p>Start your Python journey from zero to hero.</p>
+            </div>
+        </div>
+
+        <!-- VIDEO 2 -->
+        <div id="thumb2" class="video-thumb-card"
+             data-level="Intermediate" onclick="playVideo(2)">
+            <div class="video-thumb-wrapper">
+                <img src="VIDEO_THUMBNAIL2_LINK" alt="AWS Deep Dive"
+                     class="video-thumbnail"
+                     onerror="this.src='https://via.placeholder.com/300x170?text=Video+2'">
+                <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                </div>
+                <span class="video-badge level-intermediate">Intermediate</span>
+            </div>
+            <div class="video-thumb-info">
+                <h4>AWS Cloud Services Deep Dive</h4>
+                <div class="video-meta">
+                    <span class="video-duration">⏱ 60 min</span>
+                    <span class="video-views">👁 890 views</span>
+                </div>
+                <p>Master EC2, S3, RDS and CloudFront on AWS.</p>
+            </div>
+        </div>
+
+        <!-- VIDEO 3 -->
+        <div id="thumb3" class="video-thumb-card"
+             data-level="Advanced" onclick="playVideo(3)">
+            <div class="video-thumb-wrapper">
+                <img src="VIDEO_THUMBNAIL3_LINK" alt="ML Advanced"
+                     class="video-thumbnail"
+                     onerror="this.src='https://via.placeholder.com/300x170?text=Video+3'">
+                <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                </div>
+                <span class="video-badge level-advanced">Advanced</span>
+            </div>
+            <div class="video-thumb-info">
+                <h4>Machine Learning with Python</h4>
+                <div class="video-meta">
+                    <span class="video-duration">⏱ 90 min</span>
+                    <span class="video-views">👁 2.1K views</span>
+                </div>
+                <p>Build real ML models using scikit-learn and TensorFlow.</p>
+            </div>
+        </div>
+
+        <!-- VIDEO 4 -->
+        <div id="thumb4" class="video-thumb-card"
+             data-level="Beginner" onclick="playVideo(4)">
+            <div class="video-thumb-wrapper">
+                <img src="VIDEO_THUMBNAIL4_LINK" alt="Math Basics"
+                     class="video-thumbnail"
+                     onerror="this.src='https://via.placeholder.com/300x170?text=Video+4'">
+                <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                </div>
+                <span class="video-badge level-beginner">Beginner</span>
+            </div>
+            <div class="video-thumb-info">
+                <h4>Mathematics Fundamentals</h4>
+                <div class="video-meta">
+                    <span class="video-duration">⏱ 55 min</span>
+                    <span class="video-views">👁 750 views</span>
+                </div>
+                <p>Core math concepts made simple and easy to understand.</p>
+            </div>
+        </div>
+
+        <!-- VIDEO 5 -->
+        <div id="thumb5" class="video-thumb-card"
+             data-level="Intermediate" onclick="playVideo(5)">
+            <div class="video-thumb-wrapper">
+                <img src="VIDEO_THUMBNAIL5_LINK" alt="Business Strategy"
+                     class="video-thumbnail"
+                     onerror="this.src='https://via.placeholder.com/300x170?text=Video+5'">
+                <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                </div>
+                <span class="video-badge level-intermediate">Intermediate</span>
+            </div>
+            <div class="video-thumb-info">
+                <h4>Business Strategy Masterclass</h4>
+                <div class="video-meta">
+                    <span class="video-duration">⏱ 75 min</span>
+                    <span class="video-views">👁 1.5K views</span>
+                </div>
+                <p>Learn proven business strategies from industry leaders.</p>
+            </div>
+        </div>
+
+        <!-- VIDEO 6 -->
+        <div id="thumb6" class="video-thumb-card"
+             data-level="Advanced" onclick="playVideo(6)">
+            <div class="video-thumb-wrapper">
+                <img src="VIDEO_THUMBNAIL6_LINK" alt="Medical Science"
+                     class="video-thumbnail"
+                     onerror="this.src='https://via.placeholder.com/300x170?text=Video+6'">
+                <div class="play-overlay">
+                    <div class="play-btn-circle">▶</div>
+                </div>
+                <span class="video-badge level-advanced">Advanced</span>
+            </div>
+            <div class="video-thumb-info">
+                <h4>Advanced Medical Science</h4>
+                <div class="video-meta">
+                    <span class="video-duration">⏱ 120 min</span>
+                    <span class="video-views">👁 3.4K views</span>
+                </div>
+                <p>Deep dive into human biology, anatomy and medical research.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- VIDEO PLAYERS -->
+    <div id="player1" class="video-player">
+        <div class="video-player-inner">
+            <div class="video-player-header">
+                <h3>🎬 Python Basics for Beginners</h3>
+                <button class="close-btn" onclick="closeVideo()">✖ Close</button>
+            </div>
+            <video controls autoplay>
+                <source src="CLOUDFRONT_VIDEO1_LINK" type="video/mp4">
+            </video>
+            <div class="video-player-footer">
+                <span>⏱ 45 minutes</span>
+                <span>📊 Beginner</span>
+                <span>👁 1.2K views</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="player2" class="video-player">
+        <div class="video-player-inner">
+            <div class="video-player-header">
+                <h3>🎬 AWS Cloud Services Deep Dive</h3>
+                <button class="close-btn" onclick="closeVideo()">✖ Close</button>
+            </div>
+            <video controls autoplay>
+                <source src="CLOUDFRONT_VIDEO2_LINK" type="video/mp4">
+            </video>
+            <div class="video-player-footer">
+                <span>⏱ 60 minutes</span>
+                <span>📊 Intermediate</span>
+                <span>👁 890 views</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="player3" class="video-player">
+        <div class="video-player-inner">
+            <div class="video-player-header">
+                <h3>🎬 Machine Learning with Python</h3>
+                <button class="close-btn" onclick="closeVideo()">✖ Close</button>
+            </div>
+            <video controls autoplay>
+                <source src="CLOUDFRONT_VIDEO3_LINK" type="video/mp4">
+            </video>
+            <div class="video-player-footer">
+                <span>⏱ 90 minutes</span>
+                <span>📊 Advanced</span>
+                <span>👁 2.1K views</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="player4" class="video-player">
+        <div class="video-player-inner">
+            <div class="video-player-header">
+                <h3>🎬 Mathematics Fundamentals</h3>
+                <button class="close-btn" onclick="closeVideo()">✖ Close</button>
+            </div>
+            <video controls autoplay>
+                <source src="CLOUDFRONT_VIDEO4_LINK" type="video/mp4">
+            </video>
+            <div class="video-player-footer">
+                <span>⏱ 55 minutes</span>
+                <span>📊 Beginner</span>
+                <span>👁 750 views</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="player5" class="video-player">
+        <div class="video-player-inner">
+            <div class="video-player-header">
+                <h3>🎬 Business Strategy Masterclass</h3>
+                <button class="close-btn" onclick="closeVideo()">✖ Close</button>
+            </div>
+            <video controls autoplay>
+                <source src="CLOUDFRONT_VIDEO5_LINK" type="video/mp4">
+            </video>
+            <div class="video-player-footer">
+                <span>⏱ 75 minutes</span>
+                <span>📊 Intermediate</span>
+                <span>👁 1.5K views</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="player6" class="video-player">
+        <div class="video-player-inner">
+            <div class="video-player-header">
+                <h3>🎬 Advanced Medical Science</h3>
+                <button class="close-btn" onclick="closeVideo()">✖ Close</button>
+            </div>
+            <video controls autoplay>
+                <source src="CLOUDFRONT_VIDEO6_LINK" type="video/mp4">
+            </video>
+            <div class="video-player-footer">
+                <span>⏱ 120 minutes</span>
+                <span>📊 Advanced</span>
+                
+
+
+
+            <div class="video-player-footer">
+                <span>⏱ 120 minutes</span>
+                <span>📊 Advanced</span>
+                <span>👁 3.4K views</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== ABOUT SECTION ===== -->
+<div class="about-section" id="about">
+    <div class="about-inner">
+
+        <h2 class="section-title">ℹ️ About Digital Library</h2>
+        <div class="section-divider"></div>
+
+        <p class="about-desc">
+            Digital Library is a cloud-powered platform built on AWS.
+            We provide free access to books and video lectures across
+            multiple categories for students, researchers and professionals.
+        </p>
+
+        <div class="about-grid">
+
+            <div class="about-card">
+                <span>☁️</span>
+                <h4>AWS Powered</h4>
+                <p>Built on EC2, S3, RDS and CloudFront for speed and reliability</p>
+            </div>
+
+            <div class="about-card">
+                <span>🔐</span>
+                <h4>Secure Access</h4>
+                <p>All data encrypted with bcrypt and protected sessions</p>
+            </div>
+
+            <div class="about-card">
+                <span>📱</span>
+                <h4>Mobile Ready</h4>
+                <p>Fully responsive design works on all devices</p>
+            </div>
+
+            <div class="about-card">
+                <span>⚡</span>
+                <h4>Fast Delivery</h4>
+                <p>CloudFront CDN ensures fast global content delivery</p>
+            </div>
+
+            <div class="about-card">
+                <span>📚</span>
+                <h4>100+ Books</h4>
+                <p>Huge collection across 10+ categories updated weekly</p>
+            </div>
+
+            <div class="about-card">
+                <span>🎬</span>
+                <h4>Video Lectures</h4>
+                <p>Expert video courses streamed via CloudFront</p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- ===== FAQ SECTION ===== -->
+<div class="faq-section" id="faq">
+    <div class="faq-inner">
+
+        <h2 class="section-title">❓ Frequently Asked Questions</h2>
+        <div class="section-divider"></div>
+
+        <div class="faq-list">
+
+            <div class="faq-item">
+                <div class="faq-question"
+                     onclick="toggleFaq(this)">
+                    <span>📖 How do I download a book?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Simply click the "Download" button on any book card.
+                    You must be logged in. The file will be served
+                    directly from AWS S3.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"
+                     onclick="toggleFaq(this)">
+                    <span>🎬 How do I watch video lectures?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Click any video thumbnail in the Video Lectures section.
+                    Videos stream via AWS CloudFront for the fastest experience.
+                    Click "Close" when done.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"
+                     onclick="toggleFaq(this)">
+                    <span>🔐 Is my data secure?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! All passwords are hashed using bcrypt.
+                    Sessions are protected. All data stored securely
+                    in AWS RDS MySQL database.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"
+                     onclick="toggleFaq(this)">
+                    <span>📱 Can I use this on mobile?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Absolutely! The library is fully responsive and
+                    works perfectly on phones, tablets and desktops.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question"
+                     onclick="toggleFaq(this)">
+                    <span>➕ Can I request new books?</span>
+                    <span class="faq-arrow">▼</span>
+                </div>
+                <div class="faq-answer">
+                    Yes! Contact us through the Contact section below
+                    and we will try to add your requested book
+                    within a week.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- ===== CONTACT SECTION ===== -->
+<div class="contact-section" id="contact">
+    <div class="contact-inner">
+
+        <h2 class="section-title">📬 Contact Us</h2>
+        <div class="section-divider"></div>
+
+        <div class="contact-grid">
+
+            <!-- CONTACT INFO -->
+            <div class="contact-info">
+
+                <div class="contact-info-item">
+                    <span>📧</span>
+                    <div>
+                        <h4>Email</h4>
+                        <p>support@digitallibrary.com</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <span>☎️</span>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+1-800-LIBRARY</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <span>🕐</span>
+                    <div>
+                        <h4>Working Hours</h4>
+                        <p>Mon - Fri: 9AM - 6PM</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-item">
+                    <span>☁️</span>
+                    <div>
+                        <h4>Hosted On</h4>
+                        <p>AWS EC2 · us-east-1</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CONTACT FORM -->
+            <div class="contact-form-wrap">
+                <form onsubmit="return handleContact(event)">
+
+                    <div class="form-group">
+                        <label>👤 Your Name</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text"
+                                   placeholder="Enter your name"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📧 Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📧</span>
+                            <input type="email"
+                                   placeholder="Enter your email"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>📝 Subject</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📝</span>
+                            <input type="text"
+                                   placeholder="What is this about?"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>💬 Message</label>
+                        <textarea
+                            placeholder="Write your message here..."
+                            rows="4"
+                            required
+                            style="width:100%; padding:12px 15px;
+                                   border:2px solid #e8e8e8;
+                                   border-radius:8px; font-size:0.9rem;
+                                   outline:none; resize:vertical;
+                                   font-family:inherit;">
+                        </textarea>
+                    </div>
+
+                    <button type="submit" class="contact-submit-btn">
+                        📨 Send Message
+                    </button>
+
+                    <div id="contact-success"
+                         class="contact-success"
+                         style="display:none;">
+                        ✅ Message sent successfully! We will reply soon.
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-col">
+            <div class="footer-logo">📚 Digital Library</div>
+            <p class="footer-desc">
+                Cloud-powered digital library built on AWS.
+                Providing free access to knowledge for everyone.
+            </p>
+            <div class="footer-social">
+                <a href="#">🐦</a>
+                <a href="#">📘</a>
+                <a href="#">📸</a>
+                <a href="#">💼</a>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>📚 Quick Links</h4>
+            <ul>
+                <li><a href="#home">🏠 Home</a></li>
+                <li><a href="#books">📖 Books</a></li>
+                <li><a href="#videos">🎬 Videos</a></li>
+                <li><a href="#about">ℹ️ About</a></li>
+                <li><a href="#faq">❓ FAQ</a></li>
+                <li><a href="#contact">📬 Contact</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>🏷️ Categories</h4>
+            <ul>
+                <li><a href="#">💻 Technology</a></li>
+                <li><a href="#">🔬 Science</a></li>
+                <li><a href="#">🔢 Mathematics</a></li>
+                <li><a href="#">💼 Business</a></li>
+                <li><a href="#">🏛️ History</a></li>
+                <li><a href="#">🏥 Medical</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col">
+            <h4>☁️ Powered By</h4>
+            <ul>
+                <li>🖥️ AWS EC2</li>
+                <li>🗄️ AWS RDS MySQL</li>
+                <li>📦 AWS S3</li>
+                <li>⚡ AWS CloudFront</li>
+                <li>🐘 PHP Backend</li>
+                <li>🔐 bcrypt Security</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2024 Digital Library · Built on AWS · All Rights Reserved</p>
+        <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+        </div>
+    </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="backToTop"
+        class="back-to-top"
+        onclick="scrollToTop()"
+        style="display:none;">
+    ⬆
+</button>
+
+<!-- ===== ALL JAVASCRIPT ===== -->
+<script>
+
+// ================================
+// PLAY VIDEO
+// ================================
+function playVideo(num) {
+    document.querySelectorAll('.video-thumb-card')
+        .forEach(t => t.style.display = 'none');
+    document.querySelectorAll('.video-player')
+        .forEach(p => p.style.display = 'none');
+
+    const player = document.getElementById('player' + num);
+    player.style.display = 'block';
+    player.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ================================
+// CLOSE VIDEO
+// ================================
+function closeVideo() {
+    document.querySelectorAll('video')
+        .forEach(v => { v.pause(); v.currentTime = 0; });
+    document.querySelectorAll('.video-player')
+        .forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.video-thumb-card')
+        .forEach(t => t.style.display = 'block');
+}
+
+// ================================
+// FILTER VIDEOS BY LEVEL
+// ================================
+function filterVideos(level, btn) {
+    if (btn) {
+        document.querySelectorAll('.video-filter .filter-btn')
+            .forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+
+    document.querySelectorAll('.video-thumb-card')
+        .forEach(card => {
+            if (level === 'all' ||
+                card.dataset.level === level) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+    closeVideo();
+}
+
+// ================================
+// SEARCH BOOKS (header + main)
+// ================================
+function searchBooks() {
+    const val1 = document.getElementById('searchInput')?.value.toLowerCase() || '';
+    const val2 = document.getElementById('headerSearch')?.value.toLowerCase() || '';
+    const query = val1 || val2;
+
+    const cards = document.querySelectorAll('.card');
+    let found = 0;
+
+    cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(query)) {
+            card.style.display = 'flex';
+            found++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    document.getElementById('results-count').textContent = found;
+    document.getElementById('no-results').style.display =
+        found === 0 ? 'block' : 'none';
+}
+
+// ================================
+// FILTER BOOKS BY CATEGORY
+// ================================
+function filterBooks(category, btn) {
+    if (btn) {
+        document.querySelectorAll('.filter-buttons .filter-btn')
+            .forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+
+    const cards = document.querySelectorAll('.card');
+    let found = 0;
+
+    cards.forEach(card => {
+        if (category === 'all' ||
+            card.dataset.category === category) {
+            card.style.display = 'flex';
+            found++;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    document.getElementById('results-count').textContent = found;
+    document.getElementById('no-results').style.display =
+        found === 0 ? 'block' : 'none';
+}
+
+// ================================
+// SORT BOOKS
+// ================================
+function sortBooksBy() {
+    const sortBy = document.getElementById('sortBooks').value;
+    const grid   = document.getElementById('booksGrid');
+    const cards  = Array.from(grid.querySelectorAll('.card'));
+
+    cards.sort((a, b) => {
+        if (sortBy === 'title') {
+            return a.dataset.title.localeCompare(b.dataset.title);
+        }
+        if (sortBy === 'downloads') {
+            return parseInt(b.dataset.downloads) -
+                   parseInt(a.dataset.downloads);
+        }
+        if (sortBy === 'newest') {
+            return new Date(b.dataset.date) -
+                   new Date(a.dataset.date);
+        }
+        return 0;
+    });
+
+    cards.forEach(card => grid.appendChild(card));
+}
+
+// ================================
+// SCROLL TO BOOKS
+// ================================
+function scrollToBooks() {
+    document.getElementById('books')
+        .scrollIntoView({ behavior: 'smooth' });
+}
+
+// ================================
+// LOAD MORE (Simulated)
+// ================================
+function loadMore() {
+    alert('✅ All books are currently loaded!\nMore books coming soon.');
+}
+
+// ================================
+// FAQ TOGGLE
+// ================================
+function toggleFaq(el) {
+    const answer = el.nextElementSibling;
+    const arrow  = el.querySelector('.faq-arrow');
+    const isOpen = answer.style.display === 'block';
+
+    document.querySelectorAll('.faq-answer')
+        .forEach(a => a.style.display = 'none');
+    document.querySelectorAll('.faq-arrow')
+        .forEach(a => a.textContent = '▼');
+
+    if (!isOpen) {
+        answer.style.display = 'block';
+        arrow.textContent = '▲';
+    }
+}
+
+// ================================
+// CONTACT FORM
+// ================================
+function handleContact(e) {
+    e.preventDefault();
+    document.getElementById('contact-success')
+        .style.display = 'block';
+    e.target.reset();
+    return false;
+}
+
+// ================================
+// BACK TO TOP
+// ================================
+window.onscroll = function () {
+    const btn = document.getElementById('backToTop');
+    btn.style.display =
+        document.documentElement.scrollTop > 400
+            ? 'block' : 'none';
+
+    // Active navbar highlight
+    const sections = ['home','books','videos','about','faq','contact'];
+    sections.forEach(id => {
+        const sec  = document.getElementById(id);
+        const link = document.querySelector(`.nav-link[href="#${id}"]`);
+        if (!sec || !link) return;
+        const rect = sec.getBoundingClientRect();
+        if (rect.top <= 120 && rect.bottom >= 120) {
+            document.querySelectorAll('.nav-link')
+                .forEach(l => l.classList.remove('nav-active'));
+            link.classList.add('nav-active');
+        }
+    });
+};
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+</script>
+
+</body>
+</html>
